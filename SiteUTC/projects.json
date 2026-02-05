@@ -1,0 +1,23 @@
+[
+  {
+    "titre": "Projet Alpha",
+    "description": "Une application web innovante utilisant les dernières technologies.",
+    "image": "assets/img/project-alpha.jpg",
+    "technologies": ["HTML", "CSS", "JavaScript", "React"],
+    "lienGitHub": "https://github.com/unipro/projet-alpha"
+  },
+  {
+    "titre": "Projet Beta",
+    "description": "Développement d'un système de gestion de contenu pour les petites entreprises.",
+    "image": "assets/img/project-beta.jpg",
+    "technologies": ["Node.js", "Express", "MongoDB", "Vue.js"],
+    "lienGitHub": "https://github.com/unipro/projet-beta"
+  },
+  {
+    "titre": "Projet Gamma",
+    "description": "Un jeu mobile casual avec des graphismes stylisés et un gameplay addictif.",
+    "image": "assets/img/project-gamma.jpg",
+    "technologies": ["Unity", "C#", "Blender"],
+    "lienGitHub": "https://github.com/unipro/projet-gamma"
+  }
+]

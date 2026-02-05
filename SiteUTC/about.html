@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Club | UNIPRO TECH CLUB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { utcBlue: '#2D3382', utcRed: '#E31E24' },
+                    fontFamily: { martian: ['Martian Mono', 'monospace'] }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="font-martian text-utcBlue bg-slate-50 overflow-x-hidden">
+
+    <!-- FOND BINAIRE ANIMÉ -->
+    <canvas id="tech-bg" class="fixed inset-0 z-[-1]"></canvas>
+
+    <!-- NAVIGATION -->
+    <nav class="fixed top-0 w-full z-[100] px-6 md:px-10 pt-6">
+        <div class="max-w-[1600px] mx-auto liquid-glass rounded-3xl px-12 py-5 flex justify-between items-center border-b-4 border-utcBlue/10 shadow-xl">
+            <div class="flex items-center gap-6">
+                <a href="index.html"><img src="assets/img/logo._utc.png" alt="UTC Logo" class="h-16 md:h-20 object-contain"></a>
+                <div class="hidden xl:block border-l-2 border-utcBlue/20 pl-6">
+                    <span class="text-xl font-black tracking-tighter uppercase">UNIPRO</span><br>
+                    <span class="text-[10px] font-bold text-utcRed uppercase tracking-[0.3em]">Tech Club</span>
+                </div>
+            </div>
+            <div class="hidden lg:flex gap-10 items-center font-bold text-[11px] uppercase tracking-[0.2em]">
+                <a href="index.html" class="nav-link transition">Accueil</a>
+                <a href="about.html" class="nav-link text-utcRed transition">À Propos</a>
+                <a href="portfolio.html" class="nav-link transition">Portfolio</a>
+                <a href="services.html" class="nav-link transition">Services</a>
+                <a href="contact.html" class="brutalist-card bg-utcBlue text-white px-8 py-4 hover:bg-utcRed ml-4 transition-all">Rejoindre_</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO ABOUT : MANIFESTE -->
+    <header class="relative pt-72 pb-32 px-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            <div class="lg:col-span-8">
+                <div class="text-utcRed font-black text-xs tracking-[0.5em] mb-8 uppercase">// L'ORGANE DIGITAL D'UNIPRO</div>
+                <h1 class="text-6xl md:text-[7.5rem] font-black uppercase leading-[0.8] mb-12">
+                    BIENVENUE <br> DANS LE <br> <span class="text-stroke">MOTEUR_</span>
+                </h1>
+                <p class="text-xl opacity-70 leading-relaxed border-l-8 border-utcBlue pl-10 max-w-2xl">
+                    L'Unipro Tech Club est l'épicentre de l'innovation au sein de l'<strong>Univers Professionnel</strong>. Nous ne sommes pas qu'un club, nous sommes une unité de production de talents.
+                </p>
+            </div>
+            <div class="lg:col-span-4 hidden lg:block">
+                <!-- Déco Brutaliste : Un grand 01 vertical -->
+                <div class="text-[20rem] font-black opacity-5 select-none leading-none">01</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION ADN TECH : GRID DE SPÉCIALITÉS -->
+    <section class="py-32 bg-utcBlue text-white">
+        <div class="max-w-7xl mx-auto px-10">
+            <h2 class="text-4xl font-black mb-20 uppercase tracking-tighter">NOTRE <span class="text-utcRed">ADN</span> TECHNIQUE_</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <div class="p-8 border-2 border-white/20 hover:border-utcRed transition group">
+                    <div class="text-utcRed font-black text-2xl mb-4">_01</div>
+                    <h4 class="text-lg font-black mb-4 uppercase">BUILD_</h4>
+                    <p class="text-[10px] opacity-60 leading-loose">Développement d'applications robustes, sites web performants et solutions logicielles scalables.</p>
+                </div>
+
+                <div class="p-8 border-2 border-white/20 hover:border-utcRed transition group">
+                    <div class="text-utcRed font-black text-2xl mb-4">_02</div>
+                    <h4 class="text-lg font-black mb-4 uppercase">SECURE_</h4>
+                    <p class="text-[10px] opacity-60 leading-loose">Audit de sécurité, protection des données et sensibilisation aux cyber-menaces modernes.</p>
+                </div>
+
+                <div class="p-8 border-2 border-white/20 hover:border-utcRed transition group">
+                    <div class="text-utcRed font-black text-2xl mb-4">_03</div>
+                    <h4 class="text-lg font-black mb-4 uppercase">DESIGN_</h4>
+                    <p class="text-[10px] opacity-60 leading-loose">Expériences utilisateurs fluides, interfaces futuristes et identités visuelles impactantes.</p>
+                </div>
+
+                <div class="p-8 border-2 border-white/20 hover:border-utcRed transition group">
+                    <div class="text-utcRed font-black text-2xl mb-4">_04</div>
+                    <h4 class="text-lg font-black mb-4 uppercase">LEARN_</h4>
+                    <p class="text-[10px] opacity-60 leading-loose">Montée en compétence continue à travers des bootcamps et des projets collaboratifs.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION ÉQUIPE : INTERACTIVE GLASS CARDS -->
+    <section class="py-32 px-10">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-black mb-24 text-center uppercase">LE NOYAU <span class="text-utcRed">EXECUTIF</span></h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+                
+                <!-- Membre 1 -->
+                <div class="liquid-glass p-8 rounded-[40px] text-center group cursor-crosshair member-card">
+                    <div class="w-32 h-32 rounded-3xl mx-auto mb-6 border-4 border-utcBlue overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" 
+                             alt="Président UNIPRO" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <h4 class="font-black uppercase text-base mb-2">Alexandre Martin</h4>
+                    <p class="text-[10px] text-utcRed font-black uppercase tracking-[0.2em] opacity-60">STRATÉGIE & VISION</p>
+                </div>
+
+                <!-- Membre 2 -->
+                <div class="liquid-glass p-8 rounded-[40px] text-center group cursor-crosshair member-card">
+                    <div class="w-32 h-32 rounded-3xl mx-auto mb-6 border-4 border-utcRed overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b332c1ca?w=200&h=200&fit=crop&crop=face" 
+                             alt="Lead Dev UNIPRO" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <h4 class="font-black uppercase text-base mb-2">Sophie Laurent</h4>
+                    <p class="text-[10px] text-utcRed font-black uppercase tracking-[0.2em] opacity-60">ARCHITECTURE TECH</p>
+                </div>
+
+                <!-- Membre 3 -->
+                <div class="liquid-glass p-8 rounded-[40px] text-center group cursor-crosshair member-card">
+                    <div class="w-32 h-32 rounded-3xl mx-auto mb-6 border-4 border-utcBlue overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face" 
+                             alt="Secrétaire UNIPRO" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <h4 class="font-black uppercase text-base mb-2">Lucas Dubois</h4>
+                    <p class="text-[10px] text-utcRed font-black uppercase tracking-[0.2em] opacity-60">ADMINISTRATION</p>
+                </div>
+
+                <!-- Membre 4 -->
+                <div class="liquid-glass p-8 rounded-[40px] text-center group cursor-crosshair member-card">
+                    <div class="w-32 h-32 rounded-3xl mx-auto mb-6 border-4 border-utcRed overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face" 
+                             alt="Designer UNIPRO" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <h4 class="font-black uppercase text-base mb-2">Marie Chen</h4>
+                    <p class="text-[10px] text-utcRed font-black uppercase tracking-[0.2em] opacity-60">UI/UX & COM</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION CHIFFRES BRUTALISTES -->
+    <section class="pb-32 px-10">
+        <div class="max-w-7xl mx-auto brutalist-card bg-white p-16 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+            <div>
+                <div class="text-7xl font-black text-utcRed mb-4">+50</div>
+                <div class="text-xs font-bold uppercase tracking-widest">MEMBRES ACTIFS_</div>
+            </div>
+            <div class="border-y-2 md:border-y-0 md:border-x-2 border-utcBlue/10 py-8 md:py-0">
+                <div class="text-7xl font-black text-utcBlue mb-4">12</div>
+                <div class="text-xs font-bold uppercase tracking-widest">PROJETS FINIS_</div>
+            </div>
+            <div>
+                <div class="text-7xl font-black text-utcRed mb-4">2023</div>
+                <div class="text-xs font-bold uppercase tracking-widest">ANNÉE DE CRÉATION_</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER AMÉLIORÉ -->
+    <footer class="bg-utcBlue text-white py-24 px-10 border-t-8 border-utcRed">
+        <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-16">
+            
+            <!-- Logo et description -->
+            <div class="text-center md:text-left">
+                <img src="assets/img/logo._utc.png" class="h-28 mx-auto md:mx-0 mb-8 brightness-0 invert">
+                <p class="text-xs opacity-70 uppercase tracking-[0.3em] mb-6">
+                    Univers Professionnel (UNIPRO) <br> 
+                    Tech Club 2024
+                </p>
+                <p class="text-sm opacity-60 leading-relaxed">
+                    Le club tech qui transforme les idées en réalité digitale. 
+                    Innovation, collaboration et excellence depuis 2023.
+                </p>
+            </div>
+            
+            <!-- Navigation rapide -->
+            <div>
+                <h3 class="font-black text-lg mb-8 uppercase tracking-wider">Navigation_</h3>
+                <ul class="space-y-4">
+                    <li><a href="index.html" class="text-sm opacity-70 hover:text-utcRed transition">Accueil</a></li>
+                    <li><a href="about.html" class="text-sm opacity-70 hover:text-utcRed transition">À Propos</a></li>
+                    <li><a href="portfolio.html" class="text-sm opacity-70 hover:text-utcRed transition">Portfolio</a></li>
+                    <li><a href="services.html" class="text-sm opacity-70 hover:text-utcRed transition">Services</a></li>
+                    <li><a href="contact.html" class="text-sm opacity-70 hover:text-utcRed transition">Contact</a></li>
+                </ul>
+            </div>
+            
+            <!-- Services -->
+            <div>
+                <h3 class="font-black text-lg mb-8 uppercase tracking-wider">Services_</h3>
+                <ul class="space-y-4">
+                    <li><span class="text-sm opacity-70">Développement Web</span></li>
+                    <li><span class="text-sm opacity-70">Applications Mobile</span></li>
+                    <li><span class="text-sm opacity-70">Solutions IA</span></li>
+                    <li><span class="text-sm opacity-70">Consulting Tech</span></li>
+                    <li><span class="text-sm opacity-70">Formation</span></li>
+                </ul>
+            </div>
+            
+            <!-- Contact et réseaux -->
+            <div>
+                <h3 class="font-black text-lg mb-8 uppercase tracking-wider">Contact_</h3>
+                <div class="space-y-4 mb-8">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-envelope text-utcRed"></i>
+                        <span class="text-sm opacity-70">contact@unipro.tech</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-map-marker-alt text-utcRed"></i>
+                        <span class="text-sm opacity-70">Campus UTC, Paris</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-phone text-utcRed"></i>
+                        <span class="text-sm opacity-70">+33 1 23 45 67 89</span>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-utcRed transition">
+                        <i class="fab fa-linkedin text-sm"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-utcRed transition">
+                        <i class="fab fa-github text-sm"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-utcRed transition">
+                        <i class="fab fa-twitter text-sm"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-utcRed transition">
+                        <i class="fab fa-instagram text-sm"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom bar -->
+        <div class="max-w-[1400px] mx-auto mt-16 pt-8 border-t border-white/10 text-center">
+            <p class="text-xs opacity-50">
+                Made with <span class="text-utcRed">❤</span> by UNIPRO Tech Club | 
+                <a href="#" class="hover:text-utcRed transition">Mentions légales</a> | 
+                <a href="#" class="hover:text-utcRed transition">Politique de confidentialité</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- JS PERSONNEL -->
+    <script src="js/main.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Animations d'entrée
+        gsap.from("h1", { y: 50, opacity: 0, duration: 1.2, ease: "power4.out" });
+        gsap.from(".p-8", {
+            scrollTrigger: ".grid",
+            scale: 0.8,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.2
+        });
+    </script>
+</body>
+</html>

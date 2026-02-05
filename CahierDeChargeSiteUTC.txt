@@ -1,0 +1,89 @@
+Cahier des charges – Site web du Club Informatique
+
+ 1. Contexte et objectif
+
+Le club informatique souhaite disposer d’un site web moderne permettant :
+
+* de présenter le club et ses activités,
+* de mettre en avant ses projets et réalisations (portfolio),
+* de proposer des prestations de services (création de sites web, services informatiques, etc.).
+
+Le site devra être *consultable par tous les utilisateurs, mais *administrable uniquement par un compte admin, sans modification directe du code.
+
+2. Public cible
+
+* Visiteurs / utilisateurs: étudiants, partenaires, clients potentiels (consultation uniquement).
+* Administrateurs : membres autorisés du club (gestion du contenu du site).
+
+3. Fonctionnalités attendues
+
+ 3.1 Fonctionnalités côté utilisateurs
+
+* Consultation des pages du site.
+* Accès aux informations du club (présentation, vision, objectifs).
+* Consultation du portfolio (projets et activités réalisés).
+* Consultation des services proposés par le club (vente / prestations).
+* Accès aux informations de contact.
+
+ 3.2 Fonctionnalités côté administrateur
+
+* Connexion sécurisée à un espace d’administration.
+* Ajout, modification et suppression de contenu de manière dynamique, sans toucher au code.
+* Gestion du portfolio :
+
+  ajout d’un projet ou d’une activité,
+  description complète (titre, description, date, images, technologies utilisées, etc.).
+* Gestion des activités du club (événements, ateliers, formations).
+* Gestion des services proposés (vente et prestations de services).
+* Mise à jour des informations générales du site.
+
+4. Contenu du site
+
+* Page d’accueil (présentation générale du club).
+* Page « À propos » du club.
+* Page Portfolio (projets et activités, évolutive dans le temps).
+* Page Services (vente et prestations de services).
+* Page Contact.
+* Espace Administration (accès réservé).
+
+5. Contraintes techniques
+
+ 5.1 Stack technique
+
+* Frontend:
+
+  HTML css
+   Tailwind CSS
+ javasrcipt
+
+ 5.2 Gestion du contenu
+
+* Le contenu (portfolio, activités, services) doit être géré dynamiquement via l’espace admin.
+* Aucune modification du code ne doit être nécessaire pour mettre à jour le contenu.
+
+6. Sécurité
+
+* Accès administrateur protégé par authentification.
+* Séparation claire entre les droits admin et utilisateurs simples.
+
+7. Livrables attendus
+
+* Le projet complet hébergé et déployé sur GitHub.
+* Un document PDF expliquant :
+
+  l’organisation du travail,
+  la collaboration entre les membres du groupe,
+  la répartition des tâches.
+
+8. Évolutivité
+
+* Le site doit être conçu pour évoluer facilement (ajout futur de projets, d’activités et de services).
+* Possibilité d’ajouter de nouvelles sections sans refonte complète du site.
+
+ 9. Critères de réussite
+
+* Site fonctionnel et accessible.
+* Interface simple, claire et responsive.
+* Administration du contenu entièrement dynamique.
+* Respect de la stack technique imposée.
+* Livrables conformes aux exigences.

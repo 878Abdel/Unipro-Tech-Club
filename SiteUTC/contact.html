@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | UNIPRO TECH CLUB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { utcBlue: '#2D3382', utcRed: '#E31E24' },
+                    fontFamily: { martian: ['Martian Mono', 'monospace'] }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="font-martian text-utcBlue bg-slate-50 overflow-x-hidden">
+
+    <!-- ARRIÈRE-PLAN : PLUIE BINAIRE JS -->
+    <canvas id="tech-bg" class="fixed inset-0 z-[-1]"></canvas>
+    <div class="blob opacity-10" id="blob1"></div>
+    <div class="blob opacity-10" id="blob2"></div>
+
+    <!-- NAVIGATION -->
+    <nav class="fixed top-0 w-full z-[100] px-6 md:px-10 pt-6">
+        <div class="max-w-[1600px] mx-auto liquid-glass rounded-3xl px-12 py-5 flex justify-between items-center border-b-4 border-utcBlue/10 shadow-xl">
+            <div class="flex items-center gap-6">
+                <a href="index.html"><img src="assets/img/logo._utc.png" alt="UTC Logo" class="h-16 md:h-24 object-contain"></a>
+                <div class="hidden xl:block border-l-2 border-utcBlue/20 pl-6">
+                    <span class="text-xl font-black tracking-tighter uppercase">UNIPRO</span><br>
+                    <span class="text-[10px] font-bold text-utcRed uppercase tracking-[0.3em]">Tech Club</span>
+                </div>
+            </div>
+            <div class="hidden lg:flex gap-10 items-center font-bold text-[11px] uppercase tracking-[0.2em]">
+                <a href="index.html" class="nav-link transition">Accueil</a>
+                <a href="about.html" class="nav-link transition">À Propos</a>
+                <a href="portfolio.html" class="nav-link transition">Portfolio</a>
+                <a href="services.html" class="nav-link transition">Services</a>
+                <a href="contact.html" class="nav-link text-utcRed transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO CONTACT -->
+    <header class="relative pt-64 pb-20 px-10">
+        <div class="max-w-7xl mx-auto text-center lg:text-left">
+            <h1 class="text-6xl md:text-[8rem] font-black uppercase leading-[0.8] mb-12">
+                DÉBUTER_ <br> <span class="text-utcRed">UN_PROJET</span>
+            </h1>
+            <p class="text-xl opacity-70 max-w-2xl leading-relaxed border-l-8 border-utcRed pl-10 mx-auto lg:mx-0">
+                Une idée ? Un besoin technique ? Contactez l'élite tech de l'<strong>Univers Professionnel</strong>. Nos terminaux sont ouverts 24/7.
+            </p>
+        </div>
+    </header>
+
+    <!-- MAIN SECTION CONTACT -->
+    <section class="pb-32 px-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            
+            <!-- FORMULAIRE (Liquid Glass) : 7 colonnes -->
+            <div class="lg:col-span-7 liquid-glass p-10 md:p-16 rounded-[60px] border-2 border-white/40 shadow-2xl">
+                <h2 class="text-3xl font-black uppercase mb-8">
+                    <i class="fas fa-envelope mr-3 text-utcRed"></i>
+                    Envoyez-nous un message
+                </h2>
+                
+                <form id="contactForm" class="space-y-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black uppercase tracking-widest opacity-40">Nom_Complet</label>
+                            <input type="text" id="name" name="name" required placeholder="Ex: Jean Tech" 
+                                class="w-full bg-white/10 border-b-2 border-utcBlue/20 p-4 focus:border-utcRed outline-none transition font-bold text-sm">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black uppercase tracking-widest opacity-40">Adresse_Email</label>
+                            <input type="email" id="email" name="email" required placeholder="contact@domain.com" 
+                                class="w-full bg-white/10 border-b-2 border-utcBlue/20 p-4 focus:border-utcRed outline-none transition font-bold text-sm">
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black uppercase tracking-widest opacity-40">Objet_Du_Message</label>
+                        <select id="subject" name="subject" required 
+                            class="w-full bg-white/10 border-b-2 border-utcBlue/20 p-4 focus:border-utcRed outline-none transition font-bold text-sm">
+                            <option value="">Choisissez un sujet</option>
+                            <option value="projet">Demande de projet</option>
+                            <option value="devis">Demande de devis</option>
+                            <option value="information">Information générale</option>
+                            <option value="partenariat">Partenariat</option>
+                            <option value="rejoindre">Rejoindre le club</option>
+                        </select>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black uppercase tracking-widest opacity-40">Message_Contenu</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Décrivez votre besoin technique..." 
+                            class="w-full bg-white/10 border-2 border-utcBlue/10 p-4 focus:border-utcRed outline-none transition font-bold text-sm rounded-2xl"></textarea>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <input type="checkbox" id="newsletter" name="newsletter" class="mr-3">
+                        <label for="newsletter" class="text-xs font-black uppercase tracking-[0.3em]">S'abonner à la newsletter</label>
+                    </div>
+                    
+                    <button type="submit" 
+                        class="brutalist-card bg-utcBlue text-white w-full py-6 font-black uppercase tracking-[0.3em] hover:bg-utcRed transition-colors">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        Envoyer_La_Requete_
+                    </button>
+                </form>
+                
+                <!-- Message de confirmation -->
+                <div id="successMessage" class="hidden mt-6 p-4 bg-green-500/10 border-2 border-green-500/30 rounded-xl">
+                    <p class="text-sm font-black text-green-700">
+                        <i class="fas fa-check-circle mr-2"></i>
+                        Message envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.
+                    </p>
+                </div>
+            </div>
+
+            <!-- INFOS DE CONTACT (Brutaliste) : 5 colonnes -->
+            <div class="lg:col-span-5 space-y-10">
+                
+                <div class="brutalist-card bg-white p-10">
+                    <h3 class="text-utcRed font-black text-xl mb-6 uppercase">
+                        <i class="fas fa-map-marker-alt mr-3"></i>
+                        Localisation_
+                    </h3>
+                    <div class="space-y-4">
+                        <p class="text-sm leading-loose opacity-70">
+                            Campus de l'Univers Professionnel (UNIPRO)<br>
+                            Département Informatique<br>
+                            Bureau du Tech Club, Salle 104<br>
+                            123 Avenue de l'Innovation<br>
+                            75000 Paris, France
+                        </p>
+                        <div class="pt-4">
+                            <h4 class="text-sm font-black uppercase mb-2">Horaires</h4>
+                            <p class="text-xs opacity-60">
+                                Lundi - Vendredi: 9h00 - 18h00<br>
+                                Samedi: 10h00 - 16h00<br>
+                                Dimanche: Fermé
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="brutalist-card bg-utcBlue text-white p-10">
+                    <h3 class="text-utcRed font-black text-xl mb-6 uppercase">
+                        <i class="fas fa-phone mr-3"></i>
+                        Direct_Connect_
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope mr-3"></i>
+                            <div>
+                                <h4 class="text-sm font-black uppercase">Email</h4>
+                                <p class="text-xs opacity-80">contact@unipro-techclub.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone mr-3"></i>
+                            <div>
+                                <h4 class="text-sm font-black uppercase">Téléphone</h4>
+                                <p class="text-xs opacity-80">+33 1 23 45 67 89</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-mobile-alt mr-3"></i>
+                            <div>
+                                <h4 class="text-sm font-black uppercase">WhatsApp</h4>
+                                <p class="text-xs opacity-80">+33 6 12 34 56 78</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="brutalist-card bg-white p-10">
+                    <h3 class="text-utcRed font-black text-xl mb-6 uppercase">
+                        <i class="fas fa-share-alt mr-3"></i>
+                        Réseaux_Sociaux_
+                    </h3>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-12 h-12 bg-utcBlue/20 rounded-full flex items-center justify-center hover:bg-utcBlue hover:text-white transition">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-utcRed/20 rounded-full flex items-center justify-center hover:bg-utcRed hover:text-white transition">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-utcBlue/20 rounded-full flex items-center justify-center hover:bg-utcBlue hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-utcRed/20 rounded-full flex items-center justify-center hover:bg-utcRed hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION FAQ -->
+    <section class="py-32 bg-utcBlue text-white">
+        <div class="max-w-7xl mx-auto px-10">
+            <h2 class="text-4xl md:text-5xl font-black mb-20 text-center uppercase tracking-tighter">
+                Questions <span class="text-utcRed">FREQUENTES_</span>
+            </h2>
+            
+            <div class="max-w-3xl mx-auto space-y-6">
+                <div class="faq-item">
+                    <button class="w-full text-left p-6 bg-white/10 rounded-xl hover:bg-white/20 transition flex justify-between items-center">
+                        <span class="font-black uppercase">Quels types de projets réalisez-vous ?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="hidden p-6 text-sm opacity-80">
+                        Nous réalisons tous types de projets web et mobile : sites vitrines, e-commerce, applications mobiles, plateformes SaaS, et bien plus encore.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="w-full text-left p-6 bg-white/10 rounded-xl hover:bg-white/20 transition flex justify-between items-center">
+                        <span class="font-black uppercase">Comment puis-je rejoindre le club ?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="hidden p-6 text-sm opacity-80">
+                        Vous pouvez nous contacter via ce formulaire ou venir nous rencontrer directement sur le campus. Nous organisons également des réunions d'information mensuelles.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="w-full text-left p-6 bg-white/10 rounded-xl hover:bg-white/20 transition flex justify-between items-center">
+                        <span class="font-black uppercase">Quels sont vos tarifs ?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="hidden p-6 text-sm opacity-80">
+                        Nos tarifs varient selon la complexité du projet. Nous proposons des tarifs préférentiels pour les étudiants et les projets académiques. Contactez-nous pour un devis personnalisé.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER AMÉLIORÉ -->
+    <footer class="bg-utcBlue text-white py-24 px-10 border-t-8 border-utcRed">
+        <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-16">
+            
+            <!-- Logo et description -->
+            <div class="text-center md:text-left">
+                <img src="assets/img/logo._utc.png" class="h-28 mx-auto md:mx-0 mb-8 brightness-0 invert">
+                <p class="text-xs opacity-70 uppercase tracking-[0.3em] mb-6">
+                    Univers Professionnel (UNIPRO) <br> 
+                    Tech Club 2024
+                </p>
+                <p class="text-sm opacity-60 leading-relaxed">
+                    Le club tech qui transforme les idées en réalité digitale. 
+                    Innovation, collaboration et excellence depuis 2023.
+                </p>
+            </div>
+            
+            <!-- Navigation rapide -->
+            <div>
+                <h3 class="font-black text-lg mb-8 uppercase tracking-wider">Navigation_</h3>
+                <ul class="space-y-4">
+                    <li><a href="index.html" class="text-sm opacity-70 hover:text-utcRed transition">Accueil</a></li>
+                    <li><a href="about.html" class="text-sm opacity-70 hover:text-utcRed transition">À Propos</a></li>
+                    <li><a href="portfolio.html" class="text-sm opacity-70 hover:text-utcRed transition">Portfolio</a></li>
+                    <li><a href="services.html" class="text-sm opacity-70 hover:text-utcRed transition">Services</a></li>
+                    <li><a href="contact.html" class="text-sm opacity-70 hover:text-utcRed transition">Contact</a></li>
+                </ul>
+            </div>
+            
+            <!-- Services -->
+            <div>
+                <h3 class="font-black text-lg mb-8 uppercase tracking-wider">Services_</h3>
+                <ul class="space-y-4">
+                    <li><span class="text-sm opacity-70">Développement Web</span></li>
+                    <li><span class="text-sm opacity-70">Applications Mobile</span></li>
+                    <li><span class="text-sm opacity-70">Solutions IA</span></li>
+                    <li><span class="text-sm opacity-70">Consulting Tech</span></li>
+                    <li><span class="text-sm opacity-70">Formation</span></li>
+                </ul>
+            </div>
+            
+            <!-- Contact et réseaux -->
+            <div>
+                <h3 class="font-black text-lg mb-8 uppercase tracking-wider">Contact_</h3>
+                <div class="space-y-4 mb-8">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-envelope text-utcRed"></i>
+                        <span class="text-sm opacity-70">contact@unipro.tech</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-map-marker-alt text-utcRed"></i>
+                        <span class="text-sm opacity-70">Campus UTC, Paris</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-phone text-utcRed"></i>
+                        <span class="text-sm opacity-70">+33 1 23 45 67 89</span>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-utcRed transition">
+                        <i class="fab fa-linkedin text-sm"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-utcRed transition">
+                        <i class="fab fa-github text-sm"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-utcRed transition">
+                        <i class="fab fa-twitter text-sm"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-utcRed transition">
+                        <i class="fab fa-instagram text-sm"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom bar -->
+        <div class="max-w-[1400px] mx-auto mt-16 pt-8 border-t border-white/10 text-center">
+            <p class="text-xs opacity-50">
+                Made with <span class="text-utcRed">❤</span> by UNIPRO Tech Club | 
+                <a href="#" class="hover:text-utcRed transition">Mentions légales</a> | 
+                <a href="#" class="hover:text-utcRed transition">Politique de confidentialité</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- JS (main.js pour le binaire et le tilt) -->
+    <script src="js/main.js"></script>
+    <script src="js/dataManager.js"></script>
+    <script src="js/contact.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+        // Apparition du formulaire
+        gsap.from(".lg\\:col-span-7", {
+            x: -50,
+            opacity: 0,
+            duration: 1,
+            ease: "power4.out"
+        });
+        // Apparition des blocs info
+        gsap.from(".brutalist-card", {
+            x: 50,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power4.out"
+        });
+    </script>
+</body>
+</html>

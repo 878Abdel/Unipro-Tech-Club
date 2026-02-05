@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin | UNIPRO TECH CLUB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { utcBlue: '#2D3382', utcRed: '#E31E24' },
+                    fontFamily: { martian: ['Martian Mono', 'monospace'] }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="font-martian text-utcBlue bg-slate-50 overflow-x-hidden">
+
+    <!-- Background animé -->
+    <canvas id="tech-bg" class="fixed inset-0 z-[-1]"></canvas>
+
+    <!-- Navigation admin -->
+    <nav class="fixed top-0 w-full z-[100] px-6 md:px-10 pt-6">
+        <div class="max-w-[1600px] mx-auto liquid-glass rounded-3xl px-8 py-4 flex justify-between items-center border-b-4 border-utcBlue/10 shadow-xl">
+            <div class="flex items-center gap-6">
+                <img src="assets/img/logo._utc.png" alt="UTC Logo" class="h-16 md:h-20 object-contain">
+                <div class="hidden xl:block border-l-2 border-utcBlue/20 pl-6">
+                    <span class="text-lg font-black tracking-tighter uppercase">ADMIN</span><br>
+                    <span class="text-[8px] font-bold text-utcRed uppercase tracking-[0.3em">Dashboard</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <span class="text-xs font-black uppercase tracking-[0.2em] opacity-70">
+                    <i class="fas fa-user mr-2 text-utcRed"></i>
+                    <span id="adminUsername">Admin</span>
+                </span>
+                <button id="logoutBtn" class="px-4 py-2 bg-utcRed text-white text-xs font-black uppercase rounded-lg hover:bg-utcBlue transition">
+                    <i class="fas fa-sign-out-alt mr-2"></i>
+                    Déconnexion
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <main class="pt-32 pb-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            
+            <!-- Header avec stats -->
+            <header class="mb-12">
+                <div class="text-utcRed font-black text-xs tracking-[0.5em] mb-4 uppercase">// TABLEAU DE BORD</div>
+                <h1 class="text-5xl md:text-[6rem] font-black uppercase leading-[0.8] mb-8">
+                    PANNEAU DE <br> <span class="text-stroke">CONTRÔLE_</span>
+                </h1>
+                <p class="text-xl opacity-70 max-w-2xl">
+                    Gérez tous les aspects du club informatique depuis cette interface centralisée.
+                </p>
+            </header>
+
+            <!-- Cartes de statistiques -->
+            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <div class="liquid-glass rounded-2xl p-8 border-2 border-utcBlue/20">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-project-diagram text-3xl text-utcBlue"></i>
+                        <span class="text-2xl font-black text-utcRed" id="totalProjects">0</span>
+                    </div>
+                    <h3 class="text-sm font-black uppercase">Projets</h3>
+                    <p class="text-xs opacity-60">Total réalisations</p>
+                </div>
+
+                <div class="liquid-glass rounded-2xl p-8 border-2 border-utcRed/20">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-cogs text-3xl text-utcRed"></i>
+                        <span class="text-2xl font-black text-utcBlue" id="totalServices">0</span>
+                    </div>
+                    <h3 class="text-sm font-black uppercase">Services</h3>
+                    <p class="text-xs opacity-60">Prestations actives</p>
+                </div>
+
+                <div class="liquid-glass rounded-2xl p-8 border-2 border-utcBlue/20">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-calendar-alt text-3xl text-utcBlue"></i>
+                        <span class="text-2xl font-black text-utcRed" id="totalActivities">0</span>
+                    </div>
+                    <h3 class="text-sm font-black uppercase">Activités</h3>
+                    <p class="text-xs opacity-60">Événements planifiés</p>
+                </div>
+
+                <div class="liquid-glass rounded-2xl p-8 border-2 border-utcRed/20">
+                    <div class="flex items-center justify-between mb-4">
+                        <i class="fas fa-star text-3xl text-utcRed"></i>
+                        <span class="text-2xl font-black text-utcBlue" id="featuredProjects">0</span>
+                    </div>
+                    <h3 class="text-sm font-black uppercase">Featured</h3>
+                    <p class="text-xs opacity-60">Projets en vedette</p>
+                </div>
+            </section>
+
+            <!-- Sections de gestion -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <!-- Section Projets -->
+                <section class="lg:col-span-2">
+                    <div class="liquid-glass rounded-3xl p-8 border-4 border-white/40">
+                        <div class="flex justify-between items-center mb-8">
+                            <h2 class="text-2xl font-black uppercase">
+                                <i class="fas fa-project-diagram mr-3 text-utcBlue"></i>
+                                Gestion des Projets
+                            </h2>
+                            <button id="addProjectBtn" class="px-4 py-2 bg-utcBlue text-white text-xs font-black uppercase rounded-lg hover:bg-utcRed transition">
+                                <i class="fas fa-plus mr-2"></i>
+                                Ajouter
+                            </button>
+                        </div>
+                        
+                        <div id="projectsList" class="space-y-4 max-h-96 overflow-y-auto">
+                            <!-- Les projets seront chargés ici dynamiquement -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section Actions rapides -->
+                <section>
+                    <div class="liquid-glass rounded-3xl p-8 border-4 border-white/40">
+                        <h2 class="text-2xl font-black uppercase mb-8">
+                            <i class="fas fa-bolt mr-3 text-utcRed"></i>
+                            Actions Rapides
+                        </h2>
+                        
+                        <div class="space-y-4">
+                            <button id="manageServicesBtn" class="w-full px-4 py-3 bg-white/50 border-2 border-utcBlue/20 rounded-xl text-left hover:border-utcBlue hover:bg-white/80 transition group">
+                                <i class="fas fa-cogs mr-3 text-utcBlue group-hover:animate-pulse"></i>
+                                <span class="font-black text-sm uppercase">Gérer les Services</span>
+                            </button>
+                            
+                            <button id="manageActivitiesBtn" class="w-full px-4 py-3 bg-white/50 border-2 border-utcRed/20 rounded-xl text-left hover:border-utcRed hover:bg-white/80 transition group">
+                                <i class="fas fa-calendar-alt mr-3 text-utcRed group-hover:animate-pulse"></i>
+                                <span class="font-black text-sm uppercase">Gérer les Activités</span>
+                            </button>
+                            
+                            <button id="viewSiteBtn" class="w-full px-4 py-3 bg-white/50 border-2 border-utcBlue/20 rounded-xl text-left hover:border-utcBlue hover:bg-white/80 transition group">
+                                <i class="fas fa-eye mr-3 text-utcBlue group-hover:animate-pulse"></i>
+                                <span class="font-black text-sm uppercase">Voir le Site</span>
+                            </button>
+                            
+                            <button id="exportDataBtn" class="w-full px-4 py-3 bg-white/50 border-2 border-utcRed/20 rounded-xl text-left hover:border-utcRed hover:bg-white/80 transition group">
+                                <i class="fas fa-download mr-3 text-utcRed group-hover:animate-pulse"></i>
+                                <span class="font-black text-sm uppercase">Exporter les Données</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Modal pour ajouter/éditer un projet -->
+    <div id="projectModal" class="fixed inset-0 z-[200] hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="modalOverlay"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-6">
+            <div class="liquid-glass rounded-3xl p-8 border-4 border-white/40 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="flex justify-between items-center mb-8">
+                    <h3 class="text-2xl font-black uppercase">
+                        <i class="fas fa-project-diagram mr-3 text-utcBlue"></i>
+                        <span id="modalTitle">Ajouter un Projet</span>
+                    </h3>
+                    <button id="closeModal" class="text-utcRed hover:text-utcBlue transition">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+                
+                <form id="projectForm" class="space-y-6">
+                    <input type="hidden" id="projectId">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-black uppercase tracking-[0.3em] mb-2">Titre</label>
+                            <input type="text" id="projectTitle" required
+                                class="w-full px-4 py-3 bg-white/50 border-2 border-utcBlue/20 rounded-xl focus:border-utcBlue focus:outline-none focus:bg-white/80 transition">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-xs font-black uppercase tracking-[0.3em] mb-2">Date</label>
+                            <input type="date" id="projectDate" required
+                                class="w-full px-4 py-3 bg-white/50 border-2 border-utcBlue/20 rounded-xl focus:border-utcBlue focus:outline-none focus:bg-white/80 transition">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-xs font-black uppercase tracking-[0.3em] mb-2">Description</label>
+                        <textarea id="projectDescription" rows="3" required
+                            class="w-full px-4 py-3 bg-white/50 border-2 border-utcBlue/20 rounded-xl focus:border-utcBlue focus:outline-none focus:bg-white/80 transition"></textarea>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-black uppercase tracking-[0.3em] mb-2">Image URL</label>
+                            <input type="url" id="projectImage" required
+                                class="w-full px-4 py-3 bg-white/50 border-2 border-utcBlue/20 rounded-xl focus:border-utcBlue focus:outline-none focus:bg-white/80 transition">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-xs font-black uppercase tracking-[0.3em] mb-2">Catégorie</label>
+                            <select id="projectCategory" required
+                                class="w-full px-4 py-3 bg-white/50 border-2 border-utcBlue/20 rounded-xl focus:border-utcBlue focus:outline-none focus:bg-white/80 transition">
+                                <option value="Web">Web</option>
+                                <option value="Mobile">Mobile</option>
+                                <option value="Cyber">Cyber</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-xs font-black uppercase tracking-[0.3em] mb-2">Technologies (séparées par des virgules)</label>
+                        <input type="text" id="projectTechnologies" placeholder="React, Node.js, MongoDB"
+                            class="w-full px-4 py-3 bg-white/50 border-2 border-utcBlue/20 rounded-xl focus:border-utcBlue focus:outline-none focus:bg-white/80 transition">
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <input type="checkbox" id="projectFeatured" class="mr-3">
+                        <label for="projectFeatured" class="text-xs font-black uppercase tracking-[0.3em]">Projets en vedette</label>
+                    </div>
+                    
+                    <div class="flex gap-4">
+                        <button type="submit" class="flex-1 brutalist-card bg-utcBlue text-white py-3 font-black text-sm uppercase tracking-widest hover:bg-utcRed transition">
+                            <i class="fas fa-save mr-2"></i>
+                            Enregistrer
+                        </button>
+                        <button type="button" id="cancelBtn" class="flex-1 px-4 py-3 bg-white/50 border-2 border-utcRed/20 rounded-xl font-black text-sm uppercase hover:border-utcRed hover:bg-white/80 transition">
+                            Annuler
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/dataManager.js"></script>
+    <script src="js/admin.js"></script>
+    <script>
+        // Vérification de l'authentification
+        if (sessionStorage.getItem('unipro_admin_logged_in') !== 'true') {
+            window.location.href = 'login.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Afficher le nom de l'utilisateur
+            const username = sessionStorage.getItem('unipro_admin_username') || 'Admin';
+            document.getElementById('adminUsername').textContent = username;
+
+            // Animations d'entrée
+            gsap.from("nav", {
+                y: -50,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power3.out"
+            });
+
+            gsap.from(".stat-card", {
+                scale: 0.8,
+                opacity: 0,
+                duration: 0.6,
+                stagger: 0.1,
+                delay: 0.3,
+                ease: "back.out(1.7)"
+            });
+
+            gsap.from(".project-card", {
+                y: 30,
+                opacity: 0,
+                duration: 0.5,
+                stagger: 0.05,
+                delay: 0.6,
+                ease: "power2.out"
+            });
+        });
+    </script>
+
+    <!-- FOOTER AMÉLIORÉ -->
+    <footer class="bg-utcBlue text-white py-24 px-10 border-t-8 border-utcRed">
+        <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-16">
+            
+            <!-- Logo et description -->
+            <div class="text-center md:text-left">
+                <img src="assets/img/logo._utc.png" class="h-28 mx-auto md:mx-0 mb-8 brightness-0 invert">
+                <p class="text-xs opacity-70 uppercase tracking-[0.3em] mb-6">
+                    Univers Professionnel (UNIPRO) <br> 
+                    Tech Club 2024
+                </p>
+                <p class="text-sm opacity-60 leading-relaxed">
+                    Le club tech qui transforme les idées en réalité digitale. 
+                    Innovation, collaboration et excellence depuis 2023.
+                </p>
+            </div>
+            
+            <!-- Navigation rapide -->
+            <div>
+                <h3 class="font-black text-lg mb-8 uppercase tracking-wider">Navigation_</h3>
+                <ul class="space-y-4">
+                    <li><a href="index.html" class="text-sm opacity-70 hover:text-utcRed transition">Accueil</a></li>
+                    <li><a href="about.html" class="text-sm opacity-70 hover:text-utcRed transition">À Propos</a></li>
+                    <li><a href="portfolio.html" class="text-sm opacity-70 hover:text-utcRed transition">Portfolio</a></li>
+                    <li><a href="services.html" class="text-sm opacity-70 hover:text-utcRed transition">Services</a></li>
+                    <li><a href="contact.html" class="text-sm opacity-70 hover:text-utcRed transition">Contact</a></li>
+                </ul>
+            </div>
+            
+            <!-- Services -->
+            <div>
+                <h3 class="font-black text-lg mb-8 uppercase tracking-wider">Services_</h3>
+                <ul class="space-y-4">
+                    <li><span class="text-sm opacity-70">Développement Web</span></li>
+                    <li><span class="text-sm opacity-70">Applications Mobile</span></li>
+                    <li><span class="text-sm opacity-70">Solutions IA</span></li>
+                    <li><span class="text-sm opacity-70">Consulting Tech</span></li>
+                    <li><span class="text-sm opacity-70">Formation</span></li>
+                </ul>
+            </div>
+            
+            <!-- Contact et réseaux -->
+            <div>
+                <h3 class="font-black text-lg mb-8 uppercase tracking-wider">Contact_</h3>
+                <div class="space-y-4 mb-8">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-envelope text-utcRed"></i>
+                        <span class="text-sm opacity-70">contact@unipro.tech</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-map-marker-alt text-utcRed"></i>
+                        <span class="text-sm opacity-70">Campus UTC, Paris</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-phone text-utcRed"></i>
+                        <span class="text-sm opacity-70">+33 1 23 45 67 89</span>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-utcRed transition">
+                        <i class="fab fa-linkedin text-sm"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-utcRed transition">
+                        <i class="fab fa-github text-sm"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-utcRed transition">
+                        <i class="fab fa-twitter text-sm"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-utcRed transition">
+                        <i class="fab fa-instagram text-sm"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom bar -->
+        <div class="max-w-[1400px] mx-auto mt-16 pt-8 border-t border-white/10 text-center">
+            <p class="text-xs opacity-50">
+                Made with <span class="text-utcRed">❤</span> by UNIPRO Tech Club | 
+                <a href="#" class="hover:text-utcRed transition">Mentions légales</a> | 
+                <a href="#" class="hover:text-utcRed transition">Politique de confidentialité</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

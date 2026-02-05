@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wght@300;400;700;800&display=swap');
+
+/* EFFET VERRE LIQUIDE (LE VRAI) */
+.liquid-glass {
+    background: rgba(255, 255, 255, 0.08); 
+    backdrop-filter: blur(45px) saturate(160%) contrast(110%);
+    -webkit-backdrop-filter: blur(45px);
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    box-shadow: 
+        0 30px 60px rgba(45, 51, 130, 0.08),
+        inset 0 0 30px rgba(255, 255, 255, 0.2);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.liquid-glass:hover {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(60px) saturate(180%) contrast(120%);
+    -webkit-backdrop-filter: blur(60px);
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 
+        0 40px 80px rgba(45, 51, 130, 0.15),
+        inset 0 0 40px rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Style Brutaliste */
+.brutalist-card {
+    border: 4px solid #2D3382;
+    box-shadow: 10px 10px 0px #E31E24;
+    transition: all 0.2s ease;
+}
+.brutalist-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 15px 15px 0px #E31E24;
+}
+
+.text-stroke {
+    -webkit-text-stroke: 1.5px #2D3382;
+    color: transparent;
+}
+
+/* Blobs de couleur en fond */
+.blob {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, #2D3382 0%, #E31E24 100%);
+    filter: blur(140px);
+    border-radius: 50%;
+    z-index: -2;
+    animation: blobFloat 20s ease-in-out infinite;
+}
+#blob1 { top: -20%; left: -10%; animation-delay: 0s; }
+#blob2 { bottom: -20%; right: -10%; animation-delay: 10s; }
+
+@keyframes blobFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(30px, -50px) scale(1.1); }
+    50% { transform: translate(-20px, 30px) scale(0.9); }
+    75% { transform: translate(40px, 20px) scale(1.05); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-30px); }
+}
+.animate-float { animation: float 6s ease-in-out infinite; }
+
+/* Animations avancées */
+.nav-link {
+    position: relative;
+    transition: 0.3s;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0; height: 2px;
+    bottom: -6px; left: 0;
+    background-color: #E31E24;
+    transition: width 0.3s ease;
+}
+.nav-link:hover::after { width: 100%; }
+
+/* Animations pour les cartes de mission */
+.mission-card {
+    transform: translateY(0);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.mission-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Animations pour les statistiques */
+.stat-item {
+    transition: all 0.3s ease;
+}
+.stat-item:hover {
+    transform: scale(1.1);
+}
+
+/* Effet de brillance au scroll */
+@keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+
+.shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+}
+
+/* Effet de glitch subtil */
+@keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-1px, 1px); }
+    40% { transform: translate(-1px, -1px); }
+    60% { transform: translate(1px, 1px); }
+    80% { transform: translate(1px, -1px); }
+}
+
+.glitch-hover:hover {
+    animation: glitch 0.3s infinite;
+}
+
+/* Animations d'apparition */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Effet de particules flottantes */
+@keyframes particleFloat {
+    0%, 100% {
+        transform: translateY(0px) translateX(0px);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) translateX(50px);
+        opacity: 0;
+    }
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(45, 51, 130, 0.6);
+    border-radius: 50%;
+    animation: particleFloat 4s ease-in-out infinite;
+}
+
+/* Effet de vague au hover */
+@keyframes wave {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.wave-hover:hover {
+    animation: wave 0.6s ease-in-out;
+}
+
+/* Animations pour les images de la galerie */
+.image-card {
+    overflow: hidden;
+    position: relative;
+}
+
+.image-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.image-card:hover::before {
+    left: 100%;
+}
+
+/* Effet de rotation 3D pour les icônes */
+@keyframes rotate3d {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+}
+
+.rotate-3d:hover {
+    animation: rotate3d 1s ease-in-out;
+}
+
+/* Animations de texte */
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+.typewriter {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typewriter 3s steps(40, end);
+}
+
+/* Effet de néon */
+.neon-glow {
+    text-shadow: 
+        0 0 10px rgba(45, 51, 130, 0.8),
+        0 0 20px rgba(45, 51, 130, 0.6),
+        0 0 30px rgba(45, 51, 130, 0.4);
+}
+
+.neon-glow-red {
+    text-shadow: 
+        0 0 10px rgba(227, 30, 36, 0.8),
+        0 0 20px rgba(227, 30, 36, 0.6),
+        0 0 30px rgba(227, 30, 36, 0.4);
+}
