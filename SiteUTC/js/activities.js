@@ -1,5 +1,4 @@
-// Gestion des activités dynamiques
-class ActivitiesManager {
+﻿class ActivitiesManager {
     constructor() {
         this.dataManager = new DataManager();
         this.init();
@@ -26,7 +25,6 @@ class ActivitiesManager {
             return;
         }
 
-        // Afficher seulement les 3 activités les plus récentes
         const recentActivities = activities
             .sort((a, b) => new Date(b.date) - new Date(a.date))
             .slice(0, 3);
@@ -77,7 +75,6 @@ class ActivitiesManager {
             </div>
         `).join('');
 
-        // Animation d'apparition des cartes
         gsap.from(".activity-card", {
             scrollTrigger: {
                 trigger: ".activity-card",
@@ -92,8 +89,8 @@ class ActivitiesManager {
     }
 }
 
-// Initialiser le gestionnaire d'activités
 let activitiesManager;
 document.addEventListener('DOMContentLoaded', () => {
     activitiesManager = new ActivitiesManager();
 });
+

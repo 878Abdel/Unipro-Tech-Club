@@ -1,5 +1,4 @@
-// Gestion du panneau d'administration
-class AdminManager {
+﻿class AdminManager {
     constructor() {
         this.dataManager = new DataManager();
         this.currentEditId = null;
@@ -13,14 +12,12 @@ class AdminManager {
     }
 
     setupEventListeners() {
-        // Déconnexion
         document.getElementById('logoutBtn').addEventListener('click', () => {
             sessionStorage.removeItem('unipro_admin_logged_in');
             sessionStorage.removeItem('unipro_admin_username');
             window.location.href = 'login.html';
         });
 
-        // Modal projet
         document.getElementById('addProjectBtn').addEventListener('click', () => {
             this.openProjectModal();
         });
@@ -37,13 +34,11 @@ class AdminManager {
             this.closeProjectModal();
         });
 
-        // Formulaire projet
         document.getElementById('projectForm').addEventListener('submit', (e) => {
             e.preventDefault();
             this.saveProject();
         });
 
-        // Actions rapides
         document.getElementById('manageServicesBtn').addEventListener('click', () => {
             this.showNotification('Gestion des services - En développement', 'info');
         });
@@ -64,7 +59,6 @@ class AdminManager {
     loadStats() {
         const stats = this.dataManager.getStats();
         
-        // Animation des compteurs
         this.animateCounter('totalProjects', stats.totalProjects);
         this.animateCounter('totalServices', stats.totalServices);
         this.animateCounter('totalActivities', stats.totalActivities);
@@ -129,7 +123,6 @@ class AdminManager {
             </div>
         `).join('');
 
-        // Animation d'apparition des cartes
         gsap.from(".project-card", {
             y: 20,
             opacity: 0,
@@ -166,7 +159,6 @@ class AdminManager {
         
         modal.classList.remove('hidden');
         
-        // Animation d'ouverture
         gsap.from("#projectModal .liquid-glass", {
             scale: 0.8,
             opacity: 0,
@@ -178,7 +170,6 @@ class AdminManager {
     closeProjectModal() {
         const modal = document.getElementById('projectModal');
         
-        // Animation de fermeture
         gsap.to("#projectModal .liquid-glass", {
             scale: 0.8,
             opacity: 0,
@@ -279,13 +270,11 @@ class AdminManager {
         
         document.body.appendChild(notification);
         
-        // Animation d'entrée
         setTimeout(() => {
             notification.classList.remove('translate-x-full');
             notification.classList.add('translate-x-0');
         }, 100);
         
-        // Auto-suppression
         setTimeout(() => {
             notification.classList.add('translate-x-full');
             setTimeout(() => {
@@ -295,8 +284,8 @@ class AdminManager {
     }
 }
 
-// Initialiser le gestionnaire admin
 let adminManager;
 document.addEventListener('DOMContentLoaded', () => {
     adminManager = new AdminManager();
 });
+

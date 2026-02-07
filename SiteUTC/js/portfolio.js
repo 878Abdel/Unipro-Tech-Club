@@ -1,5 +1,4 @@
-// Gestion du portfolio dynamique
-class PortfolioManager {
+﻿class PortfolioManager {
     constructor() {
         this.dataManager = new DataManager();
         this.currentFilter = 'Tous';
@@ -13,7 +12,6 @@ class PortfolioManager {
     }
 
     setupEventListeners() {
-        // Modal détails
         document.getElementById('closeDetailModal').addEventListener('click', () => {
             this.closeDetailModal();
         });
@@ -27,7 +25,6 @@ class PortfolioManager {
         const filterButtons = document.querySelectorAll('.max-w-7xl button');
         filterButtons.forEach(button => {
             button.addEventListener('click', (e) => {
-                // Mettre à jour le style des boutons
                 filterButtons.forEach(btn => {
                     btn.classList.remove('bg-utcBlue', 'text-white');
                     btn.classList.add('border-utcBlue/20');
@@ -36,7 +33,6 @@ class PortfolioManager {
                 e.target.classList.add('bg-utcBlue', 'text-white');
                 e.target.classList.remove('border-utcBlue/20');
                 
-                // Filtrer les projets
                 this.currentFilter = e.target.textContent.replace('_', '');
                 this.loadProjects();
             });
@@ -47,7 +43,6 @@ class PortfolioManager {
         const projects = this.dataManager.getProjects();
         const projectGrid = document.getElementById('project-grid');
         
-        // Filtrer les projets
         const filteredProjects = this.currentFilter === 'Tous' 
             ? projects 
             : projects.filter(p => p.category === this.currentFilter);
@@ -104,7 +99,6 @@ class PortfolioManager {
             </div>
         `).join('');
 
-        // Animation d'apparition des cartes
         gsap.from(".project-card", {
             scrollTrigger: {
                 trigger: ".project-card",
@@ -219,7 +213,6 @@ class PortfolioManager {
 
         modal.classList.remove('hidden');
         
-        // Animation d'ouverture
         gsap.from("#projectDetailModal .liquid-glass", {
             scale: 0.8,
             opacity: 0,
@@ -231,7 +224,6 @@ class PortfolioManager {
     closeDetailModal() {
         const modal = document.getElementById('projectDetailModal');
         
-        // Animation de fermeture
         gsap.to("#projectDetailModal .liquid-glass", {
             scale: 0.8,
             opacity: 0,
@@ -244,7 +236,6 @@ class PortfolioManager {
     }
 }
 
-// Initialiser le gestionnaire de portfolio
 let portfolioManager;
 document.addEventListener('DOMContentLoaded', () => {
     portfolioManager = new PortfolioManager();

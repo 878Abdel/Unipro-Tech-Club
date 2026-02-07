@@ -1,5 +1,4 @@
-// Gestion des services dynamiques
-class ServicesManager {
+﻿class ServicesManager {
     constructor() {
         this.dataManager = new DataManager();
         this.currentFilter = 'all';
@@ -12,11 +11,9 @@ class ServicesManager {
     }
 
     setupEventListeners() {
-        // Filtres de services
         const filterButtons = document.querySelectorAll('.service-filter');
         filterButtons.forEach(button => {
             button.addEventListener('click', (e) => {
-                // Mettre à jour le style des boutons
                 filterButtons.forEach(btn => {
                     btn.classList.remove('bg-utcBlue', 'text-white');
                     btn.classList.add('border-utcBlue/20');
@@ -25,7 +22,6 @@ class ServicesManager {
                 e.target.classList.add('bg-utcBlue', 'text-white');
                 e.target.classList.remove('border-utcBlue/20');
                 
-                // Filtrer les services
                 this.currentFilter = e.target.dataset.category;
                 this.loadServices();
             });
@@ -36,7 +32,6 @@ class ServicesManager {
         const services = this.dataManager.getServices();
         const servicesGrid = document.getElementById('services-grid');
         
-        // Filtrer les services
         const filteredServices = this.currentFilter === 'all' 
             ? services 
             : services.filter(s => s.category === this.currentFilter);
@@ -101,7 +96,6 @@ class ServicesManager {
             </div>
         `).join('');
 
-        // Animation d'apparition des cartes
         gsap.from(".service-card", {
             scrollTrigger: {
                 trigger: ".service-card",
@@ -116,8 +110,8 @@ class ServicesManager {
     }
 }
 
-// Initialiser le gestionnaire de services
 let servicesManager;
 document.addEventListener('DOMContentLoaded', () => {
     servicesManager = new ServicesManager();
 });
+

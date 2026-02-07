@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -22,16 +22,16 @@
 
 <body class="font-martian text-utcBlue bg-slate-50 overflow-x-hidden">
 
-    <!-- ARRIÈRE-PLAN : PLUIE BINAIRE JS -->
+    
     <canvas id="tech-bg" class="fixed inset-0 z-[-1]"></canvas>
     <div class="blob opacity-10" id="blob1"></div>
     <div class="blob opacity-10" id="blob2"></div>
 
-    <!-- NAVIGATION -->
+    
     <nav class="fixed top-0 w-full z-[100] px-6 md:px-10 pt-6">
         <div class="max-w-[1600px] mx-auto liquid-glass rounded-3xl px-12 py-5 flex justify-between items-center border-b-4 border-utcBlue/10 shadow-xl">
             <div class="flex items-center gap-6">
-                <a href="index.html"><img src="assets/img/logo._utc.png" alt="UTC Logo" class="h-16 md:h-24 object-contain"></a>
+                <a href="index.html"><img src="assets/img/logo_utc.png" alt="UTC Logo" class="h-16 md:h-24 object-contain"></a>
                 <div class="hidden xl:block border-l-2 border-utcBlue/20 pl-6">
                     <span class="text-xl font-black tracking-tighter uppercase">UNIPRO</span><br>
                     <span class="text-[10px] font-bold text-utcRed uppercase tracking-[0.3em]">Tech Club</span>
@@ -47,7 +47,7 @@
         </div>
     </nav>
 
-    <!-- HERO CONTACT -->
+    
     <header class="relative pt-64 pb-20 px-10">
         <div class="max-w-7xl mx-auto text-center lg:text-left">
             <h1 class="text-6xl md:text-[8rem] font-black uppercase leading-[0.8] mb-12">
@@ -59,11 +59,11 @@
         </div>
     </header>
 
-    <!-- MAIN SECTION CONTACT -->
+    
     <section class="pb-32 px-10">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             
-            <!-- FORMULAIRE (Liquid Glass) : 7 colonnes -->
+            
             <div class="lg:col-span-7 liquid-glass p-10 md:p-16 rounded-[60px] border-2 border-white/40 shadow-2xl">
                 <h2 class="text-3xl font-black uppercase mb-8">
                     <i class="fas fa-envelope mr-3 text-utcRed"></i>
@@ -113,7 +113,7 @@
                     </button>
                 </form>
                 
-                <!-- Message de confirmation -->
+                
                 <div id="successMessage" class="hidden mt-6 p-4 bg-green-500/10 border-2 border-green-500/30 rounded-xl">
                     <p class="text-sm font-black text-green-700">
                         <i class="fas fa-check-circle mr-2"></i>
@@ -122,7 +122,7 @@
                 </div>
             </div>
 
-            <!-- INFOS DE CONTACT (Brutaliste) : 5 colonnes -->
+            
             <div class="lg:col-span-5 space-y-10">
                 
                 <div class="brutalist-card bg-white p-10">
@@ -204,7 +204,7 @@
         </div>
     </section>
 
-    <!-- SECTION FAQ -->
+    
     <section class="py-32 bg-utcBlue text-white">
         <div class="max-w-7xl mx-auto px-10">
             <h2 class="text-4xl md:text-5xl font-black mb-20 text-center uppercase tracking-tighter">
@@ -245,13 +245,13 @@
         </div>
     </section>
 
-    <!-- FOOTER AMÉLIORÉ -->
+    
     <footer class="bg-utcBlue text-white py-24 px-10 border-t-8 border-utcRed">
         <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-16">
             
-            <!-- Logo et description -->
+            
             <div class="text-center md:text-left">
-                <img src="assets/img/logo._utc.png" class="h-28 mx-auto md:mx-0 mb-8 brightness-0 invert">
+                <img src="assets/img/logo_utc.png" class="h-28 mx-auto md:mx-0 mb-8 brightness-0 invert">
                 <p class="text-xs opacity-70 uppercase tracking-[0.3em] mb-6">
                     Univers Professionnel (UNIPRO) <br> 
                     Tech Club 2024
@@ -262,7 +262,7 @@
                 </p>
             </div>
             
-            <!-- Navigation rapide -->
+            
             <div>
                 <h3 class="font-black text-lg mb-8 uppercase tracking-wider">Navigation_</h3>
                 <ul class="space-y-4">
@@ -274,7 +274,7 @@
                 </ul>
             </div>
             
-            <!-- Services -->
+            
             <div>
                 <h3 class="font-black text-lg mb-8 uppercase tracking-wider">Services_</h3>
                 <ul class="space-y-4">
@@ -286,7 +286,7 @@
                 </ul>
             </div>
             
-            <!-- Contact et réseaux -->
+            
             <div>
                 <h3 class="font-black text-lg mb-8 uppercase tracking-wider">Contact_</h3>
                 <div class="space-y-4 mb-8">
@@ -320,7 +320,7 @@
             </div>
         </div>
         
-        <!-- Bottom bar -->
+        
         <div class="max-w-[1400px] mx-auto mt-16 pt-8 border-t border-white/10 text-center">
             <p class="text-xs opacity-50">
                 Made with <span class="text-utcRed">❤</span> by UNIPRO Tech Club | 
@@ -330,20 +330,18 @@
         </div>
     </footer>
 
-    <!-- JS (main.js pour le binaire et le tilt) -->
-    <script src="js/main.js"></script>
+    
     <script src="js/dataManager.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/contact.js"></script>
     <script>
         gsap.registerPlugin(ScrollTrigger);
-        // Apparition du formulaire
         gsap.from(".lg\\:col-span-7", {
             x: -50,
             opacity: 0,
             duration: 1,
             ease: "power4.out"
         });
-        // Apparition des blocs info
         gsap.from(".brutalist-card", {
             x: 50,
             opacity: 0,
@@ -354,3 +352,4 @@
     </script>
 </body>
 </html>
+

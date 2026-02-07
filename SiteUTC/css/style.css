@@ -1,4 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wght@300;400;700;800&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wght@300;400;700;800&display=swap');
+
+/* Optimisations performances */
+* {
+    will-change: auto;
+}
+
+.liquid-glass,
+.mission-card,
+.stat-item,
+.image-card {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
 
 /* EFFET VERRE LIQUIDE (LE VRAI) */
 .liquid-glass {
@@ -10,6 +24,7 @@
         0 30px 60px rgba(45, 51, 130, 0.08),
         inset 0 0 30px rgba(255, 255, 255, 0.2);
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    transform: translateZ(0);
 }
 
 .liquid-glass:hover {
@@ -234,4 +249,85 @@
         0 0 10px rgba(227, 30, 36, 0.8),
         0 0 20px rgba(227, 30, 36, 0.6),
         0 0 30px rgba(227, 30, 36, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .liquid-glass:hover {
+        transform: translateY(-1px);
+    }
+    
+    .mission-card:hover {
+        transform: translateY(-4px) scale(1.01);
+    }
+    
+    .stat-item:hover {
+        transform: scale(1.05);
+    }
+    
+    .blob {
+        width: 400px;
+        height: 400px;
+        filter: blur(100px);
+    }
+    
+    .hero-text-area h1 {
+        font-size: 3.5rem;
+        line-height: 1;
+    }
+    
+    .brutalist-card:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 8px 8px 0px #E31E24;
+    }
+}
+
+@media (max-width: 480px) {
+    .blob {
+        width: 300px;
+        height: 300px;
+        filter: blur(80px);
+    }
+    
+    .hero-text-area h1 {
+        font-size: 2.5rem;
+    }
+    
+    .liquid-glass {
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
+    }
+}
+
+/* Optimisations pour les animations */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .blob {
+        animation: none;
+    }
+    
+    .animate-float {
+        animation: none;
+    }
+}
+
+/* Mode sombre support */
+@media (prefers-color-scheme: dark) {
+    .liquid-glass {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1.5px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .liquid-glass:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1.5px solid rgba(255, 255, 255, 0.3);
+    }
 }

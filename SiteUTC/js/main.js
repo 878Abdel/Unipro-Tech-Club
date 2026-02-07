@@ -1,15 +1,24 @@
-// --- 1. BACKGROUND FIXE PROFESSIONNEL ---
-const canvas = document.getElementById('tech-bg');
+﻿const canvas = document.getElementById('tech-bg');
 const ctx = canvas.getContext('2d');
+
+let isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let isMobile = window.innerWidth <= 768;
+let animationId = null;
 
 function resize() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 }
-window.addEventListener('resize', resize);
+
+window.addEventListener('resize', () => {
+    resize();
+    if (isMobile || isReduced) {
+        shapes.length = Math.min(shapes.length, 10);
+    }
+});
+
 resize();
 
-// Éléments géométriques flottants
 class TechShape {
     constructor() {
         this.reset();
@@ -32,7 +41,6 @@ class TechShape {
         this.y += this.speedY;
         this.rotation += this.rotationSpeed;
         
-        // Rebondir sur les bords
         if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
         if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
     }
@@ -49,16 +57,13 @@ class TechShape {
         
         ctx.beginPath();
         if (this.type === 0) {
-            // Carré
             ctx.rect(-this.size/2, -this.size/2, this.size, this.size);
         } else if (this.type === 1) {
-            // Triangle
             ctx.moveTo(0, -this.size/2);
             ctx.lineTo(-this.size/2, this.size/2);
             ctx.lineTo(this.size/2, this.size/2);
             ctx.closePath();
         } else {
-            // Hexagone
             for (let i = 0; i < 6; i++) {
                 const angle = (Math.PI / 3) * i;
                 const x = Math.cos(angle) * this.size/2;
@@ -74,10 +79,15 @@ class TechShape {
     }
 }
 
-const shapes = Array(25).fill().map(() => new TechShape());
+const shapes = Array(isMobile || isReduced ? 8 : 25).fill().map(() => new TechShape());
 
 function draw() {
-    // Fond dégradé professionnel
+    if (isReduced) {
+        ctx.fillStyle = '#f8fafc';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        return;
+    }
+    
     const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
     gradient.addColorStop(0, '#f8fafc');
     gradient.addColorStop(0.5, '#f1f5f9');
@@ -85,26 +95,26 @@ function draw() {
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-    // Grille subtile
-    ctx.strokeStyle = 'rgba(45, 51, 130, 0.03)';
-    ctx.lineWidth = 1;
-    const gridSize = 50;
-    
-    for (let x = 0; x < canvas.width; x += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, canvas.height);
-        ctx.stroke();
+    if (!isMobile) {
+        ctx.strokeStyle = 'rgba(45, 51, 130, 0.03)';
+        ctx.lineWidth = 1;
+        const gridSize = 50;
+        
+        for (let x = 0; x < canvas.width; x += gridSize) {
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, canvas.height);
+            ctx.stroke();
+        }
+        
+        for (let y = 0; y < canvas.height; y += gridSize) {
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(canvas.width, y);
+            ctx.stroke();
+        }
     }
     
-    for (let y = 0; y < canvas.height; y += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(canvas.width, y);
-        ctx.stroke();
-    }
-    
-    // Dessiner les formes géométriques
     shapes.forEach(shape => {
         shape.update();
         shape.draw();
@@ -113,15 +123,19 @@ function draw() {
 
 function animate() {
     draw();
-    requestAnimationFrame(animate);
+    animationId = requestAnimationFrame(animate);
 }
-animate();
 
-// --- 2. TILT 3D "LIQUID GLASS" ---
+if (!isReduced) {
+    animate();
+} else {
+    draw();
+}
+
 const card = document.querySelector('#tilt-card');
 const shine = document.querySelector('#glass-shine');
 
-if (card && shine) {
+if (card && shine && !isMobile) {
     card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -132,7 +146,6 @@ if (card && shine) {
         
         card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
         
-        // Réfraction du verre (Lueur qui suit la souris)
         const moveX = (x / rect.width) * 100;
         const moveY = (y / rect.height) * 100;
         shine.style.background = `radial-gradient(circle at ${moveX}% ${moveY}%, rgba(255,255,255,0.4) 0%, transparent 75%)`;
@@ -141,5 +154,13 @@ if (card && shine) {
     card.addEventListener('mouseleave', () => {
         card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
         shine.style.background = `none`;
+    });
+} else if (card && isMobile) {
+    card.addEventListener('touchstart', () => {
+        card.style.transform = `scale3d(1.05, 1.05, 1.05)`;
+    });
+    
+    card.addEventListener('touchend', () => {
+        card.style.transform = `scale3d(1, 1, 1)`;
     });
 }

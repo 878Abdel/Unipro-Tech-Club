@@ -1,14 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UNIPRO TECH CLUB | Excellence Numérique</title>
-    <!-- Font Awesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- GSAP pour les animations de haut niveau -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
@@ -27,19 +24,15 @@
 
 <body class="font-martian text-utcBlue bg-white overflow-x-hidden">
 
-    <!-- FOND TECHNIQUE : PLUIE BINAIRE JS -->
     <canvas id="tech-bg" class="fixed inset-0 z-[-1]"></canvas>
     
-    <!-- BLOBS DE COULEUR (Visibles à travers le verre) -->
     <div class="blob opacity-15" id="blob1"></div>
     <div class="blob opacity-15" id="blob2"></div>
 
-    <!-- NAVIGATION PREMIUM -->
     <nav class="fixed top-0 w-full z-[100] px-6 md:px-10 pt-8">
         <div class="max-w-[1600px] mx-auto liquid-glass rounded-[32px] px-12 py-5 flex justify-between items-center border-b-4 border-utcBlue/10 shadow-2xl">
             <div class="flex items-center gap-8">
-                <!-- LOGO NAV AGRANDI -->
-                <img src="assets/img/logo._utc.png" alt="UTC Logo" class="h-20 md:h-24 object-contain drop-shadow-lg">
+                <img src="assets/img/logo_utc.png" alt="UTC Logo" class="h-20 md:h-24 object-contain drop-shadow-lg">
                 <div class="hidden xl:block border-l-2 border-utcBlue/20 pl-8">
                     <span class="text-2xl font-black tracking-tighter uppercase">UNIPRO</span><br>
                     <span class="text-xs font-bold text-utcRed uppercase tracking-[0.4em]">Tech Club</span>
@@ -57,11 +50,9 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION : L'ÉLITE TECH -->
     <header class="relative min-h-screen flex items-center pt-64 pb-32 overflow-hidden">
         <div class="max-w-[1500px] mx-auto px-10 grid grid-cols-1 lg:grid-cols-12 gap-24 items-center">
             
-            <!-- CONTENU TEXTE -->
             <div class="hero-text-area z-10 lg:col-span-7">
                 <h1 class="text-6xl md:text-[7.2rem] font-black uppercase leading-[0.85] mb-12">
                     L'EXCELLENCE <br> 
@@ -82,22 +73,17 @@
                 </div>
             </div>
 
-            <!-- VISUEL : CARRE LOGO LIQUID GLASS -->
             <div class="relative z-10 flex justify-end lg:col-span-5">
                 <div id="tilt-card" class="liquid-glass w-full max-w-[440px] aspect-square rounded-[64px] flex items-center justify-center border-4 border-white/40 shadow-2xl overflow-hidden group cursor-crosshair">
-                    <!-- LOGO GÉANT -->
-                    <img src="assets/img/logo._utc.png" alt="UTC Giant" class="w-3/4 object-contain animate-float drop-shadow-2xl transition-transform duration-1000 group-hover:scale-110">
+                    <img src="assets/img/logo_utc.png" alt="UTC Giant" class="w-3/4 object-contain animate-float drop-shadow-2xl transition-transform duration-1000 group-hover:scale-110">
                     
-                    <!-- EFFET DE REFLET MOBILE JS -->
                     <div id="glass-shine" class="absolute inset-0 pointer-events-none"></div>
                 </div>
-                <!-- DÉCO BRUTALISTE -->
                 <div class="absolute -bottom-8 -left-8 w-28 h-28 bg-utcRed z-[-1] animate-pulse rounded-2xl"></div>
             </div>
         </div>
     </header>
 
-    <!-- SECTION STATISTIQUES (Impact Brutaliste) -->
     <section class="py-24 bg-utcBlue text-white border-y-8 border-white/10">
         <div class="max-w-7xl mx-auto px-10 grid grid-cols-2 md:grid-cols-4 gap-16 text-center">
             <div class="stat-item">
@@ -119,16 +105,16 @@
         </div>
     </section>
 
-    <!-- SECTION GALERIE PROJETS & CAMPUS -->
+    
     <section class="py-40 px-6 bg-gradient-to-br from-slate-50 to-blue-50">
         <div class="max-w-7xl mx-auto">
             <h2 class="text-4xl md:text-5xl font-black mb-24 text-center uppercase tracking-tighter">
                 NOS <span class="text-utcRed">RÉALISATIONS</span> & CAMPUS
             </h2>
             
-            <!-- Galerie Images Liquid Glass -->
+            
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-                <!-- Image 1: Étudiants en équipe -->
+                
                 <div class="liquid-glass rounded-3xl overflow-hidden group cursor-pointer transform transition-all duration-500 hover:scale-105">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=400&fit=crop&crop=center" 
@@ -143,7 +129,7 @@
                     </div>
                 </div>
 
-                <!-- Image 2: Campus moderne -->
+                
                 <div class="liquid-glass rounded-3xl overflow-hidden group cursor-pointer transform transition-all duration-500 hover:scale-105">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=600&h=400&fit=crop&crop=center" 
@@ -158,7 +144,7 @@
                     </div>
                 </div>
 
-                <!-- Image 3: Salle de réunion -->
+                
                 <div class="liquid-glass rounded-3xl overflow-hidden group cursor-pointer transform transition-all duration-500 hover:scale-105">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1497366214047-512c1aa84fa3?w=600&h=400&fit=crop&crop=center" 
@@ -173,7 +159,7 @@
                     </div>
                 </div>
 
-                <!-- Image 4: Présentation projet -->
+                
                 <div class="liquid-glass rounded-3xl overflow-hidden group cursor-pointer transform transition-all duration-500 hover:scale-105">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop&crop=center" 
@@ -188,7 +174,7 @@
                     </div>
                 </div>
 
-                <!-- Image 5: Équipe diversifiée -->
+                
                 <div class="liquid-glass rounded-3xl overflow-hidden group cursor-pointer transform transition-all duration-500 hover:scale-105">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&h=400&fit=crop&crop=center" 
@@ -203,7 +189,7 @@
                     </div>
                 </div>
 
-                <!-- Image 6: Code & Tech -->
+                
                 <div class="liquid-glass rounded-3xl overflow-hidden group cursor-pointer transform transition-all duration-500 hover:scale-105">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop&crop=center" 
@@ -216,11 +202,12 @@
                             </div>
                         </div>
                     </div>
+                <h2 class="text-4xl md:text-5xl font-black mb-24 text-center uppercase tracking-tighter">
                 NOTRE <span class="text-utcRed">STACK</span> TECHNOLOGIQUE
             </h2>
             
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-20">
-                <!-- Tech Icons -->
+                
                 <div class="liquid-glass rounded-2xl p-8 text-center group cursor-pointer transform transition-all duration-300 hover:scale-110">
                     <i class="fab fa-js text-5xl text-yellow-500 mb-4 group-hover:animate-bounce"></i>
                     <h4 class="text-sm font-black uppercase">JavaScript</h4>
@@ -284,7 +271,7 @@
         </div>
     </section>
 
-    <!-- SECTION MISSIONS (Verre Liquide) -->
+    
     <section class="py-40 px-6">
         <div class="max-w-7xl mx-auto">
             <h2 class="text-4xl md:text-5xl font-black mb-24 text-center uppercase tracking-tighter">
@@ -323,7 +310,7 @@
         </div>
     </section>
 
-    <!-- SECTION PROJETS RÉCENTS -->
+    
     <section class="py-32 px-6 bg-gradient-to-br from-utcBlue/5 to-utcRed/5">
         <div class="max-w-7xl mx-auto">
             <h2 class="text-4xl md:text-5xl font-black mb-20 text-center uppercase tracking-tighter">
@@ -331,7 +318,7 @@
             </h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-                <!-- Projet 1: App Mobile -->
+                
                 <div class="liquid-glass rounded-3xl p-8 group cursor-pointer transform transition-all duration-500 hover:scale-105 border-2 border-white/30">
                     <div class="relative h-48 mb-6 overflow-hidden rounded-2xl">
                         <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=400&fit=crop&crop=center" 
@@ -358,59 +345,9 @@
                     </div>
                 </div>
 
-                <!-- Projet 2: Site E-commerce -->
-                <div class="liquid-glass rounded-3xl p-8 group cursor-pointer transform transition-all duration-500 hover:scale-105 border-2 border-white/30">
-                    <div class="relative h-48 mb-6 overflow-hidden rounded-2xl">
-                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop&crop=center" 
-                             alt="Site e-commerce" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute top-4 right-4 bg-utcBlue text-white px-3 py-1 rounded-full text-xs font-black">
-                            WEB
-                        </div>
-                    </div>
-                    <h3 class="text-2xl font-black mb-4 uppercase group-hover:text-utcRed transition">Shop UTC_</h3>
-                    <p class="text-sm opacity-70 mb-6">Plateforme e-commerce pour le matériel universitaire avec paiement intégré.</p>
-                    <div class="flex gap-2 text-[10px] font-bold opacity-40">
-                        <span>#REACT</span>
-                        <span>#STRIPE</span>
-                        <span>#MONGODB</span>
-                    </div>
-                    <div class="mt-6 flex gap-4">
-                        <a href="#" class="text-utcBlue hover:text-utcRed transition font-black text-xs uppercase">
-                            <i class="fab fa-github mr-1"></i> GitHub
-                        </a>
-                        <a href="#" class="text-utcBlue hover:text-utcRed transition font-black text-xs uppercase">
-                            <i class="fas fa-external-link-alt mr-1"></i> Demo
-                        </a>
-                    </div>
-                </div>
+                
 
-                <!-- Projet 3: IA Chatbot -->
-                <div class="liquid-glass rounded-3xl p-8 group cursor-pointer transform transition-all duration-500 hover:scale-105 border-2 border-white/30">
-                    <div class="relative h-48 mb-6 overflow-hidden rounded-2xl">
-                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop&crop=center" 
-                             alt="IA Chatbot" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute top-4 right-4 bg-green-600 text-white px-3 py-1 rounded-full text-xs font-black">
-                            IA
-                        </div>
-                    </div>
-                    <h3 class="text-2xl font-black mb-4 uppercase group-hover:text-utcRed transition">UTC Assistant_</h3>
-                    <p class="text-sm opacity-70 mb-6">Chatbot IA pour répondre aux questions des étudiants 24/7.</p>
-                    <div class="flex gap-2 text-[10px] font-bold opacity-40">
-                        <span>#PYTHON</span>
-                        <span>#OPENAI</span>
-                        <span>#LANGCHAIN</span>
-                    </div>
-                    <div class="mt-6 flex gap-4">
-                        <a href="#" class="text-utcBlue hover:text-utcRed transition font-black text-xs uppercase">
-                            <i class="fab fa-github mr-1"></i> GitHub
-                        </a>
-                        <a href="#" class="text-utcBlue hover:text-utcRed transition font-black text-xs uppercase">
-                            <i class="fas fa-external-link-alt mr-1"></i> Demo
-                        </a>
-                    </div>
-                </div>
+                
             </div>
             
             <div class="text-center">
@@ -422,7 +359,6 @@
         </div>
     </section>
 
-    <!-- SECTION TÉMOIGNAGES -->
     <section class="py-32 px-6 bg-gradient-to-br from-utcRed/5 to-utcBlue/5">
         <div class="max-w-7xl mx-auto">
             <h2 class="text-4xl md:text-5xl font-black mb-20 text-center uppercase tracking-tighter">
@@ -430,7 +366,6 @@
             </h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <!-- Témoignage 1 -->
                 <div class="liquid-glass rounded-3xl p-8 border-2 border-white/30 group">
                     <div class="flex items-center mb-6">
                         <div class="w-16 h-16 bg-utcBlue rounded-full flex items-center justify-center text-white font-black text-xl mr-4">
@@ -451,7 +386,6 @@
                     <p class="text-sm opacity-80 italic">"Le club m'a permis de développer mes compétences en React et de travailler sur des projets réels. Une expérience incroyable !"</p>
                 </div>
 
-                <!-- Témoignage 2 -->
                 <div class="liquid-glass rounded-3xl p-8 border-2 border-white/30 group">
                     <div class="flex items-center mb-6">
                         <div class="w-16 h-16 bg-utcRed rounded-full flex items-center justify-center text-white font-black text-xl mr-4">
@@ -472,7 +406,6 @@
                     <p class="text-sm opacity-80 italic">"L'ambiance collaborative et les projets innovants m'ont poussée à dépasser mes limites. Je recommande vivement !"</p>
                 </div>
 
-                <!-- Témoignage 3 -->
                 <div class="liquid-glass rounded-3xl p-8 border-2 border-white/30 group">
                     <div class="flex items-center mb-6">
                         <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center text-white font-black text-xl mr-4">
@@ -496,38 +429,30 @@
         </div>
     </section>
 
-    <!-- SECTION CALL TO ACTION -->
-    <section class="py-32 px-6 bg-utcBlue text-white">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl md:text-6xl font-black mb-8 uppercase tracking-tighter">
-                PRÊT À <span class="text-utcRed">REJOINDRE</span> L'AVENTURE ?
-            </h2>
-            <p class="text-xl mb-12 opacity-90">
-                Rejoignez des centaines d'étudiants passionnés et transformez vos idées en réalité.
-            </p>
-                <a href="contact.html" class="brutalist-card bg-utcRed text-white px-12 py-6 font-black text-sm uppercase tracking-widest text-center">
-                    <i class="fas fa-rocket mr-2"></i>
-                    NOUS REJOINDRE
-                </a>
-                <a href="portfolio.html" class="liquid-glass px-12 py-6 font-black text-sm uppercase border-2 border-white text-center hover:bg-white/20">
-                    <i class="fas fa-eye mr-2"></i>
-                    Voir NOS PROJETS
-                </a>
-                <a href="https://www.linkedin.com/company/unipro-tech-club" class="liquid-glass px-12 py-6 font-black text-sm uppercase border-2 border-white text-center hover:bg-white/20">
-                    <i class="fas fa-linkedin mr-2"></i>
-                    REJOINDRE NOTRE COMMUNAUTÉ LINKEDIN
-                </a>
-                <p class="text-xs opacity-70 uppercase tracking-[0.3em] mb-6">
-                    Univers Professionnel (UNIPRO) <br> 
-                    Tech Club 2024
-                </p>
-                <p class="text-sm opacity-60 leading-relaxed">
+    <footer class="py-20 px-6 bg-utcBlue text-white">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div>
+                <h3 class="font-black text-lg mb-8 uppercase tracking-wider">UNIPRO Tech Club_</h3>
+                <p class="text-sm opacity-70 leading-relaxed mb-8">
                     Le club tech qui transforme les idées en réalité digitale. 
                     Innovation, collaboration et excellence depuis 2023.
                 </p>
+                <div class="flex gap-4">
+                    <a href="https://www.linkedin.com/company/unipro-tech-club" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-utcRed transition">
+                        <i class="fab fa-linkedin text-sm"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-utcRed transition">
+                        <i class="fab fa-github text-sm"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-utcRed transition">
+                        <i class="fab fa-twitter text-sm"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-utcRed transition">
+                        <i class="fab fa-instagram text-sm"></i>
+                    </a>
+                </div>
             </div>
             
-            <!-- Navigation rapide -->
             <div>
                 <h3 class="font-black text-lg mb-8 uppercase tracking-wider">Navigation_</h3>
                 <ul class="space-y-4">
@@ -539,7 +464,6 @@
                 </ul>
             </div>
             
-            <!-- Services -->
             <div>
                 <h3 class="font-black text-lg mb-8 uppercase tracking-wider">Services_</h3>
                 <ul class="space-y-4">
@@ -551,7 +475,6 @@
                 </ul>
             </div>
             
-            <!-- Contact et réseaux -->
             <div>
                 <h3 class="font-black text-lg mb-8 uppercase tracking-wider">Contact_</h3>
                 <div class="space-y-4 mb-8">
@@ -568,24 +491,9 @@
                         <span class="text-sm opacity-70">+33 1 23 45 67 89</span>
                     </div>
                 </div>
-                <div class="flex gap-4">
-                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-utcRed transition">
-                        <i class="fab fa-linkedin text-sm"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-utcRed transition">
-                        <i class="fab fa-github text-sm"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-utcRed transition">
-                        <i class="fab fa-twitter text-sm"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-utcRed transition">
-                        <i class="fab fa-instagram text-sm"></i>
-                    </a>
-                </div>
             </div>
         </div>
         
-        <!-- Bottom bar -->
         <div class="max-w-[1400px] mx-auto mt-16 pt-8 border-t border-white/10 text-center">
             <p class="text-xs opacity-50">
                 Made with <span class="text-utcRed">❤</span> by UNIPRO Tech Club | 
@@ -595,37 +503,31 @@
         </div>
     </footer>
 
-    <!-- SCRIPTS JS -->
-    <script src="js/main.js"></script>
     <script src="js/dataManager.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/activities.js"></script>
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // Apparition Hero
         gsap.from(".hero-text-area > *", {
             x: -80, opacity: 0, duration: 1.2, stagger: 0.2, ease: "expo.out"
         });
 
-        // Animation au Scroll des missions
         gsap.from(".mission-card", {
             scrollTrigger: { trigger: "#mission-grid", start: "top 80%" },
             y: 80, opacity: 0, duration: 1, stagger: 0.3, ease: "power4.out"
         });
 
-        // Animation des images de la galerie
         gsap.from(".liquid-glass.rounded-3xl", {
             scrollTrigger: { trigger: ".liquid-glass.rounded-3xl", start: "top 85%" },
             scale: 0.8, opacity: 0, duration: 0.8, stagger: 0.1, ease: "back.out(1.7)"
         });
 
-        // Animation des icônes technologiques
         gsap.from(".liquid-glass.rounded-2xl", {
             scrollTrigger: { trigger: ".liquid-glass.rounded-2xl", start: "top 85%" },
             y: 50, opacity: 0, duration: 0.6, stagger: 0.05, ease: "power2.out"
         });
 
-        // Animation des statistiques
         gsap.from(".stat-item", {
             scrollTrigger: { trigger: ".stat-item", start: "top 80%" },
             scale: 0, opacity: 0, duration: 0.8, stagger: 0.1, ease: "elastic.out(1, 0.3)"

@@ -1,10 +1,23 @@
-// Système de gestion des données pour UNIPRO TECH CLUB
-class DataManager {
+﻿class DataManager {
     constructor() {
+        this.storageKey = 'unipro_data';
+        this.version = '1.0.0';
         this.initializeData();
+        this.setupAutoSave();
     }
 
-    // Initialiser les données par défaut
+    setupAutoSave() {
+        setInterval(() => {
+            this.backupData();
+        }, 5 * 60 * 1000);
+    }
+
+    backupData() {
+        const data = this.exportData();
+        localStorage.setItem(`${this.storageKey}_backup`, JSON.stringify(data));
+        localStorage.setItem(`${this.storageKey}_backup_date`, new Date().toISOString());
+    }
+
     initializeData() {
         if (!localStorage.getItem('unipro_projects')) {
             const defaultProjects = [
@@ -109,17 +122,50 @@ class DataManager {
         }
     }
 
-    // Projets
     getProjects() {
         return JSON.parse(localStorage.getItem('unipro_projects') || '[]');
     }
 
+    validateProject(project) {
+        const required = ['title', 'description', 'category'];
+        const missing = required.filter(field => !project[field]);
+        if (missing.length > 0) {
+            throw new Error(`Champs obligatoires manquants: ${missing.join(', ')}`);
+        }
+        return true;
+    }
+
+    validateService(service) {
+        const required = ['title', 'description', 'price'];
+        const missing = required.filter(field => !service[field]);
+        if (missing.length > 0) {
+            throw new Error(`Champs obligatoires manquants: ${missing.join(', ')}`);
+        }
+        return true;
+    }
+
+    validateActivity(activity) {
+        const required = ['title', 'description', 'date', 'type'];
+        const missing = required.filter(field => !activity[field]);
+        if (missing.length > 0) {
+            throw new Error(`Champs obligatoires manquants: ${missing.join(', ')}`);
+        }
+        return true;
+    }
+
     addProject(project) {
-        const projects = this.getProjects();
-        project.id = Date.now();
-        projects.push(project);
-        localStorage.setItem('unipro_projects', JSON.stringify(projects));
-        return project;
+        try {
+            this.validateProject(project);
+            const projects = this.getProjects();
+            project.id = Date.now();
+            project.createdAt = new Date().toISOString();
+            projects.push(project);
+            localStorage.setItem('unipro_projects', JSON.stringify(projects));
+            return project;
+        } catch (error) {
+            console.error('Erreur ajout projet:', error.message);
+            throw error;
+        }
     }
 
     updateProject(id, updatedProject) {
@@ -140,48 +186,52 @@ class DataManager {
         return true;
     }
 
-    // Services
     getServices() {
         return JSON.parse(localStorage.getItem('unipro_services') || '[]');
     }
 
     addService(service) {
-        const services = this.getServices();
-        service.id = Date.now();
-        services.push(service);
-        localStorage.setItem('unipro_services', JSON.stringify(services));
-        return service;
-    }
-
-    updateService(id, updatedService) {
-        const services = this.getServices();
-        const index = services.findIndex(s => s.id === parseInt(id));
-        if (index !== -1) {
-            services[index] = { ...services[index], ...updatedService };
+        try {
+            this.validateService(service);
+            const services = this.getServices();
+            service.id = Date.now();
+            service.createdAt = new Date().toISOString();
+            services.push(service);
             localStorage.setItem('unipro_services', JSON.stringify(services));
-            return services[index];
+            return service;
+        } catch (error) {
+            console.error('Erreur ajout service:', error.message);
+            throw error;
         }
-        return null;
-    }
-
-    deleteService(id) {
-        const services = this.getServices();
-        const filtered = services.filter(s => s.id !== parseInt(id));
-        localStorage.setItem('unipro_services', JSON.stringify(filtered));
-        return true;
-    }
-
-    // Activités
-    getActivities() {
-        return JSON.parse(localStorage.getItem('unipro_activities') || '[]');
     }
 
     addActivity(activity) {
-        const activities = this.getActivities();
-        activity.id = Date.now();
-        activities.push(activity);
-        localStorage.setItem('unipro_activities', JSON.stringify(activities));
-        return activity;
+        try {
+            this.validateActivity(activity);
+            const activities = this.getActivities();
+            activity.id = Date.now();
+            activity.createdAt = new Date().toISOString();
+            activities.push(activity);
+            localStorage.setItem('unipro_activities', JSON.stringify(activities));
+            return activity;
+        } catch (error) {
+            console.error('Erreur ajout activité:', error.message);
+            throw error;
+        }
+    }
+
+    searchProjects(query) {
+        const projects = this.getProjects();
+        return projects.filter(project => 
+            project.title.toLowerCase().includes(query.toLowerCase()) ||
+            project.description.toLowerCase().includes(query.toLowerCase()) ||
+            project.category.toLowerCase().includes(query.toLowerCase())
+        );
+    }
+
+    getFeaturedProjects() {
+        const projects = this.getProjects();
+        return projects.filter(project => project.featured);
     }
 
     updateActivity(id, updatedActivity) {
@@ -202,7 +252,6 @@ class DataManager {
         return true;
     }
 
-    // Messages de contact
     getMessages() {
         return JSON.parse(localStorage.getItem('unipro_contact_messages') || '[]');
     }
@@ -235,7 +284,6 @@ class DataManager {
         return true;
     }
 
-    // Statistiques
     getStats() {
         const projects = this.getProjects();
         const services = this.getServices();
@@ -252,7 +300,6 @@ class DataManager {
         };
     }
 
-    // Export/Import
     exportData() {
         return {
             projects: this.getProjects(),
@@ -279,7 +326,6 @@ class DataManager {
         return true;
     }
 
-    // Reset
     resetData() {
         localStorage.removeItem('unipro_projects');
         localStorage.removeItem('unipro_services');
@@ -290,5 +336,5 @@ class DataManager {
     }
 }
 
-// Initialiser le DataManager
 const dataManager = new DataManager();
+
